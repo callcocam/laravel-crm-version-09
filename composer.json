@@ -1,0 +1,18 @@
+{
+    "name": "callcocam/siga",
+    "require": {
+        "laravel/ui": "^2.0",
+        "doctrine/dbal": "^2.10",
+        "lucascudo/laravel-pt-br-localization": "^1.0"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.3",
+        "barryvdh/laravel-ide-helper": "^2.7"
+    },
+    "authors": [
+        {
+            "name": "callcocam",
+            "email": "callcocam@gmail.com"
+        }
+    ]
+}
