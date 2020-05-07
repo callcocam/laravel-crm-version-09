@@ -42,4 +42,14 @@ class Tenant extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+
+    public function init($columnsView)
+    {
+        // TODO: Implement init() method.
+    }
+
+    public function initQuery($query)
+    {
+        // TODO: Implement initQuery() method.
+    }
 }

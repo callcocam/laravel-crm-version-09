@@ -33,3 +33,7 @@ Blueprint::macro('user', function($name="user_id"){
 Blueprint::macro('status', function($status =[]){
     $this->enum('status', array_merge([  'deleted','draft','published'], $status))->default('published');
 });
+
+Blueprint::macro('tenantUnique', function($column,$tenant="tenant_id"){
+    $this->unique([$column,$tenant]);
+});

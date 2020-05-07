@@ -23,6 +23,6 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        \Form::component('bsLink', 'siga::components.html.link', ['name', 'value', 'attributes', 'append']);
     }
 }

@@ -8,6 +8,8 @@ namespace SIGA\Providers;
 
 
 use Illuminate\Support\ServiceProvider;
+use SIGA\Router\AutoRouteServiceProvider;
+use SIGA\LvTable\LvServiceProvider;
 
 class SigaServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,10 @@ class SigaServiceProvider extends ServiceProvider
         if ($this->app->environment() !== 'production') {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
+        $this->app->register(LvServiceProvider::class);
+
+        $this->app->register(AutoRouteServiceProvider::class);
+
         $this->app->register(ComposerServiceProvider::class);
 
         $this->app->register(MacroServiceProvider::class);
