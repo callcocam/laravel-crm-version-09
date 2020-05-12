@@ -21,7 +21,8 @@ class ShHtml extends HtmlBuilder
             return $this->toHtmlString("<a href='{$this->entities($url)}' {$this->attributes($attributes)}><i {$this->attributes($append)} ></i> {$title}</a>");
         }
 
-          return $this->toHtmlString("<a href='{$this->entities($url)}' {$this->attributes($attributes)}> {$title} </a>");
+        return $this->toHtmlString("<a href='{$this->entities($url)}' {$this->attributes($attributes)}> {$title} </a>");
 
     }
+
 }

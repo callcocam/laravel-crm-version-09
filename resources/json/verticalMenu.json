@@ -1,0 +1,74 @@
+{
+    "menu": [
+        {
+            "url": "home",
+            "name": "Home",
+            "slug": "home",
+            "badgeClass": "badge badge-warning badge-pill float-right",
+            "icon": "feather icon-globe"
+        },
+        {
+            "url": "admin",
+            "name": "Dashboard",
+            "slug": "dashboard",
+            "badgeClass": "badge badge-warning badge-pill float-right",
+            "icon": "feather icon-home"
+        },
+        {
+            "url": "admin.plans.index",
+            "name": "Plans",
+            "slug": "plans",
+            "badgeClass": "badge badge-warning badge-pill float-right",
+            "icon": "feather icon-layers"
+        },
+        {
+            "url": "",
+            "name": "Operational",
+            "icon": "feather icon-settings",
+            "submenu": [
+                {
+                    "url": "admin.tenants.index",
+                    "name": "Tenants",
+                    "i18n": "nav.admin.tenants.index"
+                },
+                {
+                    "url": "admin.users.index",
+                    "name": "Users",
+                    "i18n": "nav.admin.users.index"
+                },
+                {
+                    "url": "admin.roles.index",
+                    "name": "Roles",
+                    "i18n": "nav.admin.roles.index"
+                },
+                {
+                    "url": "admin.permissions.index",
+                    "name": "Permissions",
+                    "i18n": "nav.admin.permissions.index"
+                },
+                {
+                    "url": "sk-layout-fixed",
+                    "name": "Fixed Layout",
+                    "i18n": "nav.sk_layout_fixed"
+                }
+            ]
+        },
+        {
+            "url": "",
+            "navheader": "Support",
+            "icon": ""
+        },
+        {
+            "url": "https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation/documentation-laravel.html",
+            "name": "Documentation",
+            "icon": "feather icon-folder",
+            "i18n": "nav.documentation"
+        },
+        {
+            "url": "https://pixinvent.ticksy.com/",
+            "name": "Raise Support",
+            "icon": "feather icon-life-buoy",
+            "i18n": "nav.raise_support"
+        }
+    ]
+}

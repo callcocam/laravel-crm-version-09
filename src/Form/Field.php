@@ -14,6 +14,8 @@ abstract class Field
     use Macroable;
 
     protected $options = [];
+
+    protected $data = [];
     /**
      * Element id.
      *
@@ -78,12 +80,18 @@ abstract class Field
     protected $attributes = [];
 
     /**
+     * Layout for field to render.
+     *
+     * @var string
+     */
+    protected $layout;
+
+    /**
      * View for field to render.
      *
      * @var string
      */
-    protected $view = 'lv-table::lv-table.filters.default';
-
+    protected $view = 'form.default';
     /**
      * @var bool
      */
@@ -96,27 +104,105 @@ abstract class Field
 
     public function with($key, $value){
 
-        $this->options[$key] = $value;
+        $this->data[$key] = $value;
 
         return $this;
+    }
+
+    public function getAttributes(){
+
+        $this->hasAttribute('placeholder', \Str::title($this->name));
+
+        $this->hasAttribute('id', $this->name);
+
+        return $this->attributes;
+
+    }
+    public function getOptions(){
+
+
+
+        return $this->options;
+
     }
     /**
      * {@inheritdoc}
      */
     public function render()
     {
+
+
         $this->with('id' , $this->id)
-            ->with('attributes', $this->attributes)
-            ->with('label', $this->label)
+            ->with('attributes', $this->getAttributes())
+            ->with('options', $this->getOptions())
             ->with('show' , $this->show)
-            ->with('value' , $this->value)
             ->with('type' , $this->getType())
             ->with('name', $this->name);
 
-        return view($this->view, $this->options);
+            $this->has('value');
+
+            return view(get_layout($this->view, $this->layout), $this->data);
     }
 
     abstract public function getType();
+
+
+    public function setValue($value){
+
+        $this->with('value' , $value);
+
+        return $this;
+    }
+
+    public function hasAttribute($key, $setAttribute = null){
+
+        if(!isset($this->attributes[$key])){
+            if($setAttribute){
+
+                $this->attributes[$key]  = $setAttribute;
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function hasOption($key, $setOption = null){
+
+        if(!isset($this->options[$key])){
+            if($setOption){
+
+                $this->options[$key]  = $setOption;
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    public function hasOptions($setOption =null){
+
+        if(!$this->options){
+            if($setOption){
+
+                $this->options  = $setOption;
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function has($name){
+
+        if(!isset($this->data[$name])){
+            $this->data[$name] = $this->__get($name);
+        }
+        return false;
+    }
 
     public function __set($name, $value)
     {
@@ -135,4 +221,5 @@ abstract class Field
     {
         return $this->render();
     }
+
 }

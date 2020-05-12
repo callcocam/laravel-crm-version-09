@@ -9,47 +9,19 @@ namespace SIGA\LvTable\Form\Fields;
 
 use Carbon\Carbon;
 use SIGA\Form\Field;
+use SIGA\Form\Fields\Select as SelectAlias;
 
-class Select extends Field
+class Select extends SelectAlias
 {
 
-    /**
-     * @var array $value_options
-     */
-    protected $value_options = [];
-
-    /**
-     * @var $selected
-     */
-    protected $selected;
-
-    /**
+   /**
      * @var string
      */
-    protected $view = 'lv-table::filters.select';
-
-
-    public function __construct($data = [])
-    {
-       foreach ($data as $key => $value){
-
-           $this->__set($key, $value);
-       }
-    }
+    protected $view = 'filters.select';
     /**
-     * {@inheritdoc}
+     * Layout for field to render.
+     *
+     * @var string
      */
-    public function render()
-    {
-
-      $this->with('value_options' , $this->value_options)
-            ->with('selected', $this->selected);
-
-        return parent::render();
-    }
-
-    public function getType()
-    {
-        return 'select';
-    }
+    protected $layout = 'lv-table';
 }

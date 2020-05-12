@@ -9,39 +9,19 @@ namespace SIGA\LvTable\Form\Fields;
 
 use Carbon\Carbon;
 use SIGA\Form\Field;
+use SIGA\Form\Fields\Submit as SubmitAlias;
 
-class Submit extends Field
+class Submit extends SubmitAlias
 {
-
-    protected $options = [];
-
-    protected $append;
 
     /**
      * @var string
      */
-    protected $view = 'lv-table::filters.submit';
-
-
-    public function __construct($data = [])
-    {
-       foreach ($data as $key => $value){
-
-           $this->__set($key, $value);
-       }
-    }
+    protected $view = 'filters.submit';
     /**
-     * {@inheritdoc}
+     * Layout for field to render.
+     *
+     * @var string
      */
-    public function render()
-    {
-
-        $this->with('append', $this->append);
-        return parent::render();
-    }
-
-    public function getType()
-    {
-        return 'submit';
-    }
+    protected $layout = 'lv-table';
 }

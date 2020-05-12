@@ -12,14 +12,14 @@ trait TraitLvTable
     public function initConfig()
     {
 
-        $model = $this->getSource()->getModel();
+        $this->setModel($this->getSource()->getModel()) ;
 
         $params = $this->getParamAdapter()->getObject()->getArrayCopy();
 
-        $this->defaultOptions->setOption('endpointList', $model->getAction('index', $params));
+        $this->defaultOptions->setOption('endpointList', $this->getAction('index', $params));
 
-        $this->defaultOptions->setOption('endpointCreate', $model->getAction('create', $params));
+        $this->defaultOptions->setOption('endpointCreate', $this->getAction('create', $params));
 
-        $this->defaultOptions->setOption('endpointReload', $model->getAction('index'));
+        $this->defaultOptions->setOption('endpointReload', $this->getAction('index'));
     }
 }

@@ -9,12 +9,13 @@ namespace SIGA;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use SIGA\Acl\Concerns\HasRolesAndPermissions;
 use SIGA\Sluggable\HasSlug;
 use SIGA\Sluggable\SlugOptions;
 
 class User extends Authenticatable
 {
-    use Notifiable,TableTrait, HasSlug;
+    use Notifiable,TableTrait, HasRolesAndPermissions, HasSlug;
 
     protected $keyType = "string";
 
@@ -48,6 +49,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+
+    public function address(){
+
+        return $this->morphOne(Addres::class, 'addresable')->select(['zip','city','state','country', 'street','district','number','complement']);
+
+    }
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
@@ -55,13 +64,4 @@ class User extends Authenticatable
             ->saveSlugsTo('slug');
     }
 
-    public function init($columnsView)
-    {
-        // TODO: Implement init() method.
-    }
-
-    public function initQuery($query)
-    {
-        // TODO: Implement initQuery() method.
-    }
 }

@@ -70,10 +70,13 @@ class ActionsDecorator extends AbstractCellDecorator
         $values = [];
 
         foreach ($this->vars as $var) {
+
             $actualRow = $this->getCell()->getActualRow();
-            $values[$var]['url'] = $actualRow->getAction($var, $this->params);
-            $values[$var]['icon'] = $actualRow->getIcon($var, $this->params);
-            $values[$var]['class'] = $actualRow->getClass($var, $this->params);
+
+            $this->getCell()->getTable()->setModel($actualRow);
+            $values[$var]['url'] = $this->getCell()->getTable()->getActionKey($var, $this->params);
+            $values[$var]['icon'] = $this->getCell()->getTable()->getIcon($var, $this->params);
+            $values[$var]['class'] = $this->getCell()->getTable()->getClass($var, $this->params);
             $values[$var]['view'] = $this->view ?  $this->view : $var;
         }
        return view(sprintf("lv-table::%s", $this->template), [

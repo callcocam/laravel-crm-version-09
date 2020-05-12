@@ -9,29 +9,19 @@ namespace SIGA\LvTable\Form\Fields;
 
 use Carbon\Carbon;
 use SIGA\Form\Field;
+use SIGA\Form\Fields\Input as InputAlias;
 
-class Input extends Field
+class Input extends InputAlias
 {
-
-    protected $options = [];
 
     /**
      * @var string
      */
-    protected $view = 'lv-table::filters.input';
-
-
-    public function __construct($data = [])
-    {
-       foreach ($data as $key => $value){
-
-           $this->__set($key, $value);
-       }
-    }
-
-    public function getType()
-    {
-        return 'text';
-    }
-
+    protected $view = 'filters.input';
+    /**
+     * Layout for field to render.
+     *
+     * @var string
+     */
+    protected $layout = 'lv-table';
 }

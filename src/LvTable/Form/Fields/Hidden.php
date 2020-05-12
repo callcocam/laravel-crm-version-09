@@ -6,27 +6,20 @@
  */
 namespace SIGA\LvTable\Form\Fields;
 
-use SIGA\Form\Field;
+use SIGA\Form\Fields\Hidden as HiddenAlias;
 
-class Hidden extends Field
+class Hidden extends HiddenAlias
 {
 
     /**
      * @var string
      */
-    protected $view = 'lv-table::filters.hidden';
+    protected $view = 'filters.hidden';
 
-
-    public function __construct($data = [])
-    {
-       foreach ($data as $key => $value){
-
-           $this->__set($key, $value);
-       }
-    }
-
-    public function getType()
-    {
-        return 'hidden';
-    }
+    /**
+     * Layout for field to render.
+     *
+     * @var string
+     */
+    protected $layout = 'lv-table';
 }

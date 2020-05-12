@@ -1,3 +1,7 @@
 <?php
 
-return [];
+return [
+
+    'prefix'=>'siga',
+    'layout'=>'siga::layouts.app',
+];

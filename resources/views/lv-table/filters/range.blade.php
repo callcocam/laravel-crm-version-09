@@ -3,7 +3,7 @@
         <div class="input-group">
             <div class="input-group-prepend">
                       <span class="input-group-text">
-                        <i class="far fa-calendar-alt"></i>
+                        <i class="fa fa-calendar"></i>
                       </span>
             </div>
             {!! Form::text(null, $template, $attributes) !!}
@@ -16,6 +16,13 @@
     @endif
 </div>
 @section('adminlte_js')
+    <script>
+        //'#reportrange span'
+        {!! $script !!}
+
+    </script>
+@stop
+@section('page-script-range')
     <script>
         //'#reportrange span'
         {!! $script !!}

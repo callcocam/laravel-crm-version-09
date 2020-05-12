@@ -17,8 +17,13 @@ class ShForm extends HtmlBuilder
         if (! array_key_exists('type', $options)) {
             $options['type'] = 'button';
         }
+
+        if (! array_key_exists('name', $options)) {
+            $options['name'] = date("YmdHis");
+        }
+
         if($append){
-            return $this->toHtmlString("<button {$this->attributes($options)}><i {$this->attributes($append)} ></i>  {$value}</button>");
+            return $this->toHtmlString("<button name='{$options['name']}' {$this->attributes($options)}><i {$this->attributes($append)} ></i>  {$value}</button>");
         }
 
     }

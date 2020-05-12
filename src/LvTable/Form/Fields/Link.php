@@ -9,43 +9,20 @@ namespace SIGA\LvTable\Form\Fields;
 
 use Carbon\Carbon;
 use SIGA\Form\Field;
+use SIGA\Form\Fields\Link as LinkAlias;
 
-class Link extends Field
+class Link extends LinkAlias
 {
 
-    protected $options = [];
-
-    protected $parameters  = [];
-
-    protected $append  = [];
 
     /**
      * @var string
      */
-    protected $view = 'lv-table::filters.link';
-
-
-    public function __construct($data = [])
-    {
-       foreach ($data as $key => $value){
-
-           $this->__set($key, $value);
-       }
-    }
+    protected $view = 'filters.link';
     /**
-     * {@inheritdoc}
+     * Layout for field to render.
+     *
+     * @var string
      */
-    public function render()
-    {
-
-         $this->with('append', $this->append)
-            ->with('parameters', $this->parameters);
-
-         return parent::render();
-    }
-
-    public function getType()
-    {
-        return 'link';
-    }
+    protected $layout = 'lv-table';
 }

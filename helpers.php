@@ -8,6 +8,25 @@ if (!function_exists('siga_path')){
     }
 }
 
+if (!function_exists('get_layout')){
+
+    function get_layout($path, $layout=null){
+
+        if($layout)
+           return sprintf("%s::%s",$layout, $path);
+
+           return sprintf("%s::%s",config('siga.prefix'), $path);
+    }
+}
+
+if (!function_exists('get_theme_table')){
+
+    function get_theme_table($path){
+
+        return sprintf("lv-table::%s", $path);
+    }
+}
+
 if (!function_exists('link_to_route_icon')) {
     /**
      * Get the configuration path.
@@ -39,6 +58,34 @@ if (!function_exists('submit_to_icon')) {
     {
 
         return app(\SIGA\Html\ShForm::class)->submit_to_icon($value, $attributes, $append);
+    }
+}
+
+if (!function_exists('xy_menu')) {
+    /**
+     * Get the configuration path.
+     *
+     * @param $value
+     * @return string
+     */
+    function xy_menu($value)
+    {
+
+        return app(\SIGA\Html\ShMenu::class)->xy_menu($value);
+    }
+}
+
+if (!function_exists('xy_submenu')) {
+    /**
+     * Get the configuration path.
+     *
+     * @param $value
+     * @return string
+     */
+    function xy_submenu($value)
+    {
+
+        return app(\SIGA\Html\ShMenu::class)->xy_submenu($value);
     }
 }
 
@@ -116,7 +163,7 @@ if (!function_exists('date_carbom_format')) {
 
         //$carbon = \Carbon\Carbon::now();
         $carbon = \Illuminate\Support\Facades\Date::now();
-        $carbon->locale('pt');
+        $carbon->locale('pt-BR');
         if (strlen($date[0]) == 4) {
             //            echo  $carbon->create($y,$m,$d,$h,$i,$s)->toDateTimeLocalString().PHP_EOL;
             //            echo  $carbon->create($y,$m,$d,$h,$i,$s)->toDayDateTimeString().PHP_EOL;
@@ -138,5 +185,46 @@ if (!function_exists('date_carbom_format')) {
             return $carbon->create($d, $m, $y, $h, $i, $s);
         }
         return $carbon->create(null, null, null, null, null, null);
+    }
+}
+
+if (!function_exists('check_status')) {
+    /**
+     * Get the configuration path.
+     *
+     * @param  string $path
+     * @return string
+     */
+    function check_status($status, $options = [
+        'published' => "success", 'draft' => "warning", 'deleted' => "danger"
+    ])
+    {
+        if (isset($options[$status]))
+            return $options[$status];
+
+
+        return "info";
+    }
+}
+
+
+if (!function_exists('get_tag_color')) {
+    /**
+     * Get the configuration path.
+     *
+     * @param array $options
+     * @return string
+     */
+    function get_tag_color($options = [
+        '1' => "success", '2' => "warning", '3' => "danger", '4' => "primary", '5' => "info"
+    ])
+    {
+        $status = rand(1, 5);
+
+        if (isset($options[$status]))
+            return $options[$status];
+
+
+        return "info";
     }
 }
